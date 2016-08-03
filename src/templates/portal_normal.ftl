@@ -23,7 +23,7 @@
 <div id="wrapper">
 	<#-- HEADER/BANNER -->
 	<header id="banner" role="banner">
-		<div class="container display-table w100">
+		<div class="container display-table">
 			<div class="row display-table-cell">
 				<#-- LOGO -->
 				<div id="heading" class="pull-left">

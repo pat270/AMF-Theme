@@ -1,7 +1,6 @@
+<div id="navigationOverlay" class="navigation-toggle-trigger navigation-toggle-target" aria-expanded="false" aria-controls="navigation"></div>
 
 <div id="navigationWrapper" class="navigation-toggle-target">
-	<div id="navigationOverlay" class="navigation-toggle-trigger navigation-toggle-target" aria-expanded="false" aria-controls="navigation"></div>
-
 	<div class="container">
 		<div class="row" id="navigationSmallControls">
 			<div class="pull-left">
@@ -135,6 +134,30 @@
 							</#if>
 						</li>
 					</#list>
+
+					<li role="presentation" class="nav-footer" id="layoutNavContacts">
+						<a class="menuitem-title" aria-labelledby="layoutNavContacts" href="#" role="menuitem">
+							<span class="glyphicon glyphicon-user"></span>
+
+							${languageUtil.get(locale, "contacts")}
+						</a>
+					</li>
+
+					<li role="presentation" class="nav-footer" id="layoutNavContacts">
+						<a class="menuitem-title" aria-labelledby="layoutNavContacts" href="#" role="menuitem">
+							<span class="glyphicon glyphicon-user"></span>
+
+							${languageUtil.get(locale, "contacts")}
+						</a>
+					</li>
+
+					<li role="presentation" class="nav-footer" id="layoutNavContacts">
+						<a class="menuitem-title" aria-labelledby="layoutNavContacts" href="#" role="menuitem">
+							<span class="glyphicon glyphicon-user"></span>
+
+							${languageUtil.get(locale, "contacts")}
+						</a>
+					</li>
 
 					<li role="presentation" class="nav-footer" id="layoutNavContacts">
 						<a class="menuitem-title" aria-labelledby="layoutNavContacts" href="#" role="menuitem">
