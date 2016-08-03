@@ -99,7 +99,7 @@ AUI.add(
 						var instance = this;
 
 						if (navigation) {
-							navigation.delegate(['click'], instance._onMouseToggle, '> li', instance);
+							navigation.delegate(['click'], instance._onMouseToggle, '> li .menuitem-title', instance);
 
 							navigation.delegate('keydown', instance._handleKeyDown, 'a', instance);
 						}
@@ -133,36 +133,48 @@ AUI.add(
 					_onNavigationMenuToggle: function(event) {
 						var instance = this;
 
-						var showMenu = (event.type == 'showNavigationMenu');
+						var li = event.menu;
+						var ul = li.ancestor('ul');
 
-						var menu = event.menu;
+						var hasChildMenu = li.one('> ul');
+						var isChildOpen = ul.contains(ul.one('> li.open'));
 
-						if (menu) {
-							instance._lastShownMenu = null;
+						var showMenu = (event.type == 'showNavigationMenu') && hasChildMenu;
 
-							if (showMenu) {
-								instance._lastShownMenu = menu;
+						if (showMenu) {
+							instance._lastShownMenu = li;
+
+							ul.all('li').removeClass('open');
+							ul.all('li ul').removeClass('child-open');
+
+							li.addClass('open');
+							ul.addClass('child-open');
+						}
+						else {
+							if (!isChildOpen) {
+								ul.removeClass('child-open');
 							}
 
-							if (true) { // TODO check if has child pages
-								menu.toggleClass('open', showMenu);
-							}
+							li.all('ul').removeClass('child-open');
+							li.all('ul li').removeClass('open');
+
+							li.removeClass('open');
+							li.all('ul').removeClass('child-open');
 						}
 					},
 
 					_onMouseToggle: function(event) {
-						console.log('_onMouseToggle()');
 						var instance = this;
 
 						var mapHover = instance.MAP_HOVER;
 
 						var eventType = 'showNavigationMenu';
 
-						if (event.currentTarget.hasClass('open')) {
+						mapHover.menu = event.currentTarget.ancestor('li');
+
+						if (mapHover.menu.hasClass('open')) {
 							eventType = 'hideNavigationMenu';
 						}
-
-						mapHover.menu = event.currentTarget;
 
 						Liferay.fire(eventType, mapHover);
 					}
