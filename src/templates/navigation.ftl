@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row" id="navigationSmallControls">
 			<div class="pull-left">
-				<button aria-controls="navigation" class="header-button header-button-back" type="button">
+				<button aria-controls="navigation" class="header-button header-button-back" id="navigationBack" type="button">
 					<span class="glyphicon glyphicon-chevron-left"></span>
 
 					<span class="header-button-label">Back</span>

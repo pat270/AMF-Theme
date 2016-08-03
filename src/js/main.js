@@ -63,6 +63,7 @@ AUI.add(
 
 						instance._navigationToggleTriggers = A.all('.navigation-toggle-trigger');
 						instance._navigationToggleTargets = A.all('.navigation-toggle-target');
+						instance._navigationBack = A.one('#navigationBack');
 
 						instance._navigationToggleTriggers.on(
 							'click',
@@ -77,14 +78,18 @@ AUI.add(
 							}
 						);
 
-						// var navigation = instance.get('host').all('ul');
+						instance._navigationBack.on(
+							'click',
+							function (event) {
+								console.log('instance._navigationBack.on(click)');
 
-						// navigation.each(
-						// 	function (node) {
-						// 		console.log(' >navigation.each');
-						// 		instance._initChildMenuHandlers(node);
-						// 	}
-						// );
+								var menu = A.one('#' + event.currentTarget.attr('data-menu'));
+
+								if (menu) {
+									Liferay.fire('hideNavigationMenu', {menu: menu}, instance);
+								}
+							}
+						);
 
 						Liferay.detach(['hideNavigationMenu', 'showNavigationMenu']);
 
@@ -101,72 +106,66 @@ AUI.add(
 						if (navigation) {
 							navigation.delegate(['click'], instance._onMouseToggle, '> li .menuitem-title', instance);
 
-							navigation.delegate('keydown', instance._handleKeyDown, 'a', instance);
+							// navigation.delegate('keydown', instance._handleKeyDown, 'a', instance); // Off for now. TODO FocusManager
 						}
 					},
 
-					// _initNodeFocusManager: function() {
-					// 	console.log('_initNodeFocusManager()');
-					// 	var instance = this;
+					_initNodeFocusManager: function() {
+						// Off for now. TODO FocusManager
+					},
 
-					// 	var host = instance.get('host');
+					_onNavigationMenuToggle: function(event, instance) {
+						var menuLI = event.menu;
+						var parentUL = menuLI.ancestor('ul');
 
-					// 	host.plug(
-					// 		A.Plugin.NodeFocusManager,
-					// 		{
-					// 			descendants: '.menuitem-title',  // TODO
-					// 			focusClass: 'focused',
-					// 			keys: {
-					// 				next: 'down:40', // TODO
-					// 				previous: 'down:38' // TODO
-					// 			}
-					// 		}
-					// 	);
-
-					// 	var focusManager = host.focusManager;
-
-					// 	focusManager.after(['activeDescendantChange', 'focusedChange'], instance._showMenu, instance);
-
-					// 	instance._focusManager = focusManager;
-					// },
-
-					_onNavigationMenuToggle: function(event) {
-						var instance = this;
-
-						var li = event.menu;
-						var ul = li.ancestor('ul');
-
-						var hasChildMenu = li.one('> ul');
-						var isChildOpen = ul.contains(ul.one('> li.open'));
+						var hasChildMenu = menuLI.one('> ul');
+						var isChildOpen = parentUL.contains(parentUL.one('> li.open'));
 
 						var showMenu = (event.type == 'showNavigationMenu') && hasChildMenu;
 
 						if (showMenu) {
-							instance._lastShownMenu = li;
+							parentUL.all('li').removeClass('open');
+							parentUL.all('li ul').removeClass('child-open');
 
-							ul.all('li').removeClass('open');
-							ul.all('li ul').removeClass('child-open');
+							menuLI.addClass('open');
+							parentUL.addClass('child-open');
 
-							li.addClass('open');
-							ul.addClass('child-open');
+							if (instance) {
+								instance._navigationBack.attr(
+									'data-menu',
+									menuLI.get('id')
+								);
+							}
 						}
 						else {
 							if (!isChildOpen) {
-								ul.removeClass('child-open');
+								parentUL.removeClass('child-open');
 							}
 
-							li.all('ul').removeClass('child-open');
-							li.all('ul li').removeClass('open');
+							menuLI.all('ul').removeClass('child-open');
+							menuLI.all('ul li').removeClass('open');
 
-							li.removeClass('open');
-							li.all('ul').removeClass('child-open');
+							menuLI.removeClass('open');
+							// menuLI.all('ul').removeClass('child-open');
+
+							if (instance) {
+								var parentLI = parentUL.ancestor('li');
+
+								var parentId = parentLI ? parentLI.get('id') : '';
+
+								instance._navigationBack.attr(
+									'data-menu',
+									parentId
+								);
+							}
 						}
 					},
 
 					_onMouseToggle: function(event) {
 						var instance = this;
 
-						var mapHover = instance.MAP_HOVER;
+						// var mapHover = instance.MAP_HOVER; // Off for now. TODO FocusManager
+						var mapHover = {};
 
 						var eventType = 'showNavigationMenu';
 
@@ -174,9 +173,11 @@ AUI.add(
 
 						if (mapHover.menu.hasClass('open')) {
 							eventType = 'hideNavigationMenu';
+
+							// instance.MAP_HOVER = {}; // Off for now. TODO FocusManager
 						}
 
-						Liferay.fire(eventType, mapHover);
+						Liferay.fire(eventType, mapHover, instance);
 					}
 				}
 			}
