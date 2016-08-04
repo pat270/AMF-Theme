@@ -697,6 +697,10 @@ body {
 		width: 200px;
 	}
 
+	.lvl2 > li:first-child .lvl3 {
+		display: block;
+	}
+
 	.lvl3 {
 		bottom: 0;
 		display: none;
