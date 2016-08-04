@@ -22,7 +22,7 @@
 			<nav id="navigation" role="navigation">
 				<h1 class="hide-accessible"><@liferay.language key="navigation" /></h1>
 
-				<p class="tagline"><@liferay.language key="welcome" /></p>
+				<div class="tagline"><@liferay.language key="welcome" /></div>
 
 				<#-- LVL1 NAV -->
 				<ul aria-label="<@liferay.language key="site-pages" />" class="lvl1" role="menubar">
