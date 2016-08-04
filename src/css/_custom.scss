@@ -98,7 +98,7 @@ body {
 	position: fixed;
 	right: 0;
 	top: 0;
-	z-index: 1033;
+	z-index: 1032;
 
 	@include media-query(null, $screen-xs-max) {
 		.header-search-container {
@@ -369,7 +369,7 @@ body {
 		right: 0;
 		top: 0;
 		visibility: hidden;
-		z-index: 1;
+		z-index: 1033;
 
 		@include transform(scale(1));
 
