@@ -75,6 +75,13 @@ AUI.add(
 								instance._navigationToggleTriggers.attr('aria-expanded', !isOpen);
 
 								instance._navigationToggleTargets.toggleClass('open', !isOpen);
+
+								// if (isOpen) {
+								// 	var navigation = A.one('#navigation');
+
+								// 	navigation.all('.child-open').removeClass('child-open');
+								// 	navigation.all('.open').removeClass('open');
+								// }
 							}
 						);
 
@@ -119,7 +126,8 @@ AUI.add(
 						var parentUL = menuLI.ancestor('ul');
 
 						var hasChildMenu = menuLI.one('> ul');
-						var isChildOpen = parentUL.contains(parentUL.one('> li.open'));
+
+						var parentId;
 
 						var showMenu = (event.type == 'showNavigationMenu') && hasChildMenu;
 
@@ -130,14 +138,11 @@ AUI.add(
 							menuLI.addClass('open');
 							parentUL.addClass('child-open');
 
-							if (instance) {
-								instance._navigationBack.attr(
-									'data-menu',
-									menuLI.get('id')
-								);
-							}
+							parentId = menuLI.get('id');
 						}
 						else {
+							var isChildOpen = parentUL.contains(parentUL.one('> li.open'));
+
 							if (!isChildOpen) {
 								parentUL.removeClass('child-open');
 							}
@@ -146,18 +151,24 @@ AUI.add(
 							menuLI.all('ul li').removeClass('open');
 
 							menuLI.removeClass('open');
-							// menuLI.all('ul').removeClass('child-open');
 
 							if (instance) {
+
 								var parentLI = parentUL.ancestor('li');
 
-								var parentId = parentLI ? parentLI.get('id') : '';
-
-								instance._navigationBack.attr(
-									'data-menu',
-									parentId
-								);
+								parentId = parentLI ? parentLI.get('id') : '';
 							}
+						}
+
+						var navigationBack = instance && instance._navigationBack;
+
+						if (navigationBack && !parentUL.hasClass('lvl3')) {
+							navigationBack.toggleClass('open', !!parentId);
+
+							navigationBack.attr(
+								'data-menu',
+								parentId
+							);
 						}
 					},
 
