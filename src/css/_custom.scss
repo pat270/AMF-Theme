@@ -1,5 +1,6 @@
 @import "bourbon";
 @import "mixins";
+@import "advisor-compass-mixins";
 
 /* These inject tags are used for dynamically creating imports for themelet styles, you can place them where ever you like in this file. */
 
@@ -322,6 +323,85 @@ body {
 }
 // ---------------- header buttons ---------------- //
 // ---------------- header/banner ---------------- //
+
+// ------------ Navigation Large ------------ //
+@include lg() {
+	#navigation {
+		width: 100%;
+	}
+
+	#navigationWrapper .container {
+		position: relative;
+	}
+
+	.lvl1 {
+		float: right;
+	}
+
+	.lvl1 > li {
+		display: inline-block;
+		float: left;
+	}
+
+	.lvl1 > li .menuitem-title {
+		padding: 16px 25px;
+	}
+
+	.lvl1 > .selected > .menuitem-title {
+		@include arrow-up-inner;
+	}
+
+	.lvl1 > .open > .menuitem-title {
+		@include arrow-down;
+	}
+
+	.lvl2 {
+		display: none;
+		left: 0;
+		position: absolute;
+		width: 100%;
+		z-index: 5;
+	}
+
+	.lvl2 > li {
+		width: 200px;
+	}
+
+	.lvl3 {
+		bottom: 0;
+		display: none;
+		left: 200px;
+		overflow: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.lvl3 > li {
+		float: left;
+		width: 25%;
+	}
+
+	.lvl3 > li:nth-of-type(5) {
+		clear: left;
+	}
+
+	.lvl3 > li > .menuitem-title {
+		display: table-cell;
+		height: 67px;
+		padding-bottom: 0;
+		padding-top: 15px;
+	}
+
+	.open > .child-menu {
+		display: block;
+	}
+
+	.tagline {
+		float: left;
+		line-height: 51px;
+	}
+}
 
 // ---------------- NAVIGATION ---------------- //
 @include media-query(null, $screen-md-max) {
