@@ -461,7 +461,7 @@ body {
 		padding: 0;
 	}
 
-	ul.lvl1, ul.lvl2, ul.lvl3 {
+	.lvl1, .lvl2, .lvl3 {
 		@include media-query(null, $screen-md-max) {
 			background-color: $ameriprise-blue;
 		}
@@ -503,7 +503,7 @@ body {
 		}
 	}
 
-	ul.lvl1 {
+	.lvl1 {
 		li {
 		}
 
@@ -542,17 +542,17 @@ body {
 		}
 	}
 
-	ul.lvl2 {
+	.lvl2 {
 		li {
 		}
 	}
 
-	ul.lvl3 {
+	.lvl3 {
 		li {
 		}
 	}
 
-	ul.lvl4 {
+	.lvl4 {
 		li {
 			@include media-query(null, $screen-md-max) {
 				background-color: $ameriprise-gray-light;
@@ -563,14 +563,14 @@ body {
 	// ---------------- nav look ---------------- //
 
 	// ---------------- NAV ANIMATION ---------------- //
-	ul.lvl1 {
+	.lvl1 {
 		@include media-query(null, $screen-md-max) {
 			left: 0;
 			right: 0;
 		}
 	}
 
-	ul.lvl1, ul.lvl2 {
+	.lvl1, .lvl2 {
 		@include media-query(null, $screen-md-max) {
 			// @include transition(
 			// 	left 0.3s,
@@ -586,7 +586,7 @@ body {
 		}
 	}
 
-	ul.lvl2, ul.lvl3 {
+	.lvl2, .lvl3 {
 		@include media-query(null, $screen-md-max) {
 			left: 100%;
 			right: 200%;
@@ -595,7 +595,7 @@ body {
 	}
 
 	.open > {
-		ul.lvl2, ul.lvl3 {
+		.lvl2, .lvl3 {
 			@include media-query(null, $screen-md-max) {
 				left: 0;
 				right: 0;
@@ -604,15 +604,19 @@ body {
 		}
 	}
 
-	ul.lvl1, ul.lvl2, ul.lvl3 {
+	.lvl1, .lvl2, .lvl3 {
 		@include media-query(null, $screen-md-max) {
 			bottom: 0;
 			// left: 0;
-			overflow-y: auto;
 			position: fixed;
 			// right: 0;
 			top: $header-height;
 			// z-index: 1;
+
+			ul {
+				height: 100%;
+				overflow-y: auto;
+			}
 		}
 
 		// 	@include media-query(null, $screen-md-max) {
@@ -632,21 +636,30 @@ body {
 		// }
 	}
 
-	ul.lvl4 {
+	.lvl4 {
 		@include media-query(null, $screen-md-max) {
-			height: 0;
+			max-height: 0;
 			overflow: hidden;
+
+			ul {
+				height: 100%;
+				overflow-y: auto;
+			}
+
+			@include transition(
+				max-height 0.3s
+			);
 		}
 	}
 
 	.open > {
-		ul.lvl4 {
+		.lvl4 {
 			@include media-query(null, $screen-md-max) {
-				height: auto;
+				max-height: 900px;
 
-				// @include transition(
-				// 	height 0.3s
-				// );
+				@include transition(
+					max-height 0.6s
+				);
 			}
 		}
 	}
@@ -668,20 +681,20 @@ body {
 		float: right;
 	}
 
-	.lvl1 > li {
+	.lvl1 > ul > li {
 		display: inline-block;
 		float: left;
 	}
 
-	.lvl1 > li .menuitem-title {
+	.lvl1 > ul > li .menuitem-title {
 		padding: 16px 25px;
 	}
 
-	.lvl1 > .selected > .menuitem-title {
+	.lvl1 > ul > .selected > .menuitem-title {
 		@include arrow-up-inner;
 	}
 
-	.lvl1 > .open > .menuitem-title {
+	.lvl1 > ul > .open > .menuitem-title {
 		@include arrow-down;
 	}
 
@@ -693,11 +706,11 @@ body {
 		z-index: 5;
 	}
 
-	.lvl2 > li {
+	.lvl2 > ul > li {
 		width: 200px;
 	}
 
-	.lvl2 > li:first-child .lvl3 {
+	.lvl2 > ul > li:first-child .lvl3 {
 		display: block;
 	}
 
@@ -711,16 +724,16 @@ body {
 		top: 0;
 	}
 
-	.lvl3 > li {
+	.lvl3 > ul > li {
 		float: left;
 		width: 25%;
 	}
 
-	.lvl3 > li:nth-of-type(5) {
+	.lvl3 > ul > li:nth-of-type(5) {
 		clear: left;
 	}
 
-	.lvl3 > li > .menuitem-title {
+	.lvl3 > ul > li > .menuitem-title {
 		display: table-cell;
 		height: 67px;
 		padding-bottom: 0;

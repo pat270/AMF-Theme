@@ -123,38 +123,38 @@ AUI.add(
 
 					_onNavigationMenuToggle: function(event, instance) {
 						var menuLI = event.menu;
-						var parentUL = menuLI.ancestor('ul');
+						var parentMenu = menuLI.ancestor('.menu-wrapper');
 
-						var hasChildMenu = menuLI.one('> ul');
+						var hasChildMenu = menuLI.one('> .menu-wrapper');
 
 						var parentId;
 
 						var showMenu = (event.type == 'showNavigationMenu') && hasChildMenu;
 
 						if (showMenu) {
-							parentUL.all('li').removeClass('open');
-							parentUL.all('li ul').removeClass('child-open');
+							parentMenu.all('li').removeClass('open');
+							parentMenu.all('li .menu-wrapper').removeClass('child-open');
 
 							menuLI.addClass('open');
-							parentUL.addClass('child-open');
+							parentMenu.addClass('child-open');
 
 							parentId = menuLI.get('id');
 						}
 						else {
-							var isChildOpen = parentUL.contains(parentUL.one('> li.open'));
+							var isChildOpen = parentMenu.contains(parentMenu.one('> li.open'));
 
 							if (!isChildOpen) {
-								parentUL.removeClass('child-open');
+								parentMenu.removeClass('child-open');
 							}
 
-							menuLI.all('ul').removeClass('child-open');
-							menuLI.all('ul li').removeClass('open');
+							menuLI.all('.menu-wrapper').removeClass('child-open');
+							menuLI.all('.menu-wrapper li').removeClass('open');
 
 							menuLI.removeClass('open');
 
 							if (instance) {
 
-								var parentLI = parentUL.ancestor('li');
+								var parentLI = parentMenu.ancestor('li');
 
 								parentId = parentLI ? parentLI.get('id') : '';
 							}
@@ -162,7 +162,7 @@ AUI.add(
 
 						var navigationBack = instance && instance._navigationBack;
 
-						if (navigationBack && !parentUL.hasClass('lvl3')) {
+						if (navigationBack && !parentMenu.hasClass('lvl3')) {
 							navigationBack.toggleClass('open', !!parentId);
 
 							navigationBack.attr(
