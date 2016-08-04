@@ -8,13 +8,18 @@
 
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 
-/* **************** VARIABLES **************** */
+// ---------------- VARIABLES ---------------- //
+$ameriprise-blue-light: #6284AB;
 $ameriprise-blue: #003D6D;
-$ameriprise-font-family: "ITCFRANKGOFORAMERIPRISE-BOOK";
-$header-height: 50px;
-/* **************** variables **************** */
+$ameriprise-gray-dark: #53626F;
+$ameriprise-gray-light: #A2A4A9;
 
-/* **************** PAGE **************** */
+$ameriprise-font-family: "ITCFRANKGOFORAMERIPRISE-BOOK";
+
+$header-height: 50px;
+// ---------------- variables ---------------- //
+
+// ---------------- PAGE ---------------- //
 body, html, [id^="senna_surface"], .flipped, .senna_surface1-default {
 }
 
@@ -77,9 +82,9 @@ body {
 	display: table;
 }
 
-/* **************** page **************** */
+// ---------------- page ---------------- //
 
-/* **************** HEADER/BANNER **************** */
+// ---------------- HEADER/BANNER ---------------- //
 #banner {
 	background-color: $ameriprise-blue;
 	color: #FFF;
@@ -101,7 +106,7 @@ body {
 		}
 	}
 
-	/* **************** LOGO **************** */
+	// ---------------- LOGO ---------------- //
 	.site-title {
 		margin: 0;
 	}
@@ -123,9 +128,9 @@ body {
 			width: 272px;
 		}
 	}
-	/* **************** logo **************** */
+	// ---------------- logo ---------------- //
 
-	/* **************** Right Icons **************** */
+	// ---------------- Right Icons ---------------- //
 
 
 	.banner-contact-container {
@@ -155,10 +160,10 @@ body {
 	}
 }
 
-/* **************** SEARCH **************** */
+// ---------------- SEARCH ---------------- //
 #searchCollapse {
 	// width: 100%;
-	background-color: #6284AB;
+	background-color: $ameriprise-blue-light;
 	// position: relative;
 	clear: both;
 
@@ -256,9 +261,9 @@ body {
 		}
 	}
 }
-/* **************** search **************** */
+// ---------------- search ---------------- //
 
-/* **************** HEADER BUTTONS **************** */
+// ---------------- HEADER BUTTONS ---------------- //
 .header-button {
 	background-color: transparent;
 	background-repeat: no-repeat;
@@ -315,10 +320,10 @@ body {
 		display: none;
 	}
 }
-/* **************** header buttons **************** */
-/* **************** header/banner **************** */
+// ---------------- header buttons ---------------- //
+// ---------------- header/banner ---------------- //
 
-/* **************** NAVIGATION **************** */
+// ---------------- NAVIGATION ---------------- //
 @include media-query(null, $screen-md-max) {
 	#navigationOverlay {
 		background-color: rgba(255, 255, 255, 0.5);
@@ -362,7 +367,6 @@ body {
 		top: 0;
 		visibility: hidden;
 		z-index: 1;
-		width: 85%;
 
 		@include transform(scale(1));
 
@@ -373,14 +377,21 @@ body {
 		);
 
 		&.open {
-			left: 15%;
 			visibility: visible;
 
-			@include transition(
-				left 0.3s,
-				visibility 0.3s,
-				width 0.3s
-			);
+			// @include transition(
+			// 	left 0.3s,
+			// 	visibility 0.3s,
+			// 	width 0.3s
+			// );
+		}
+	}
+
+	@include media-query(null, $screen-xs-max) {
+		width: 85%;
+
+		&.open {
+			left: 15%;
 		}
 	}
 
@@ -400,7 +411,7 @@ body {
 #navigationSmallControls {
 	@include media-query(null, $screen-md-max) {
 		background-color: $ameriprise-blue;
-		border-bottom: 1px solid #A2A4A9;
+		border-bottom: 1px solid $ameriprise-gray-light;
 		height: $header-height;
 	}
 
@@ -409,14 +420,20 @@ body {
 	}
 }
 
-#navigation {
-	@include media-query(null, $screen-md-max) {
-		background-color: $ameriprise-blue;  // OFF DURRING DEBUG
-		// position: relative;
-		// overflow: hidden;
-	}
+#navigationBack {
+	display: none;
 
-	@include media-query($screen-lg-min, null) {
+	@include media-query(null, $screen-md-max) {
+		&.open {
+			display: inline-block;
+		}
+	}
+}
+
+#navigation {
+	// ---------------- NAV LOOK ---------------- //
+	@include media-query(null, $screen-md-max) {
+		background-color: $ameriprise-blue;
 	}
 
 	.tagline {
@@ -425,112 +442,33 @@ body {
 		}
 
 		@include media-query($screen-lg-min, null) {
-			color: $gray-base;
+			color: #000;
 			font-size: 18pt;
 		}
 	}
 
 	.selected, .focused {
-		background-color: #6284AB;
-
-		@include media-query(null, $screen-md-max) {
-		}
-
-		@include media-query($screen-lg-min, null) {
-		}
+		background-color: $ameriprise-blue-light;
 	}
 
 	.open {
-		// background-color: rgba(255, 255, 0, 0.25); // DEBUG
-
-		@include media-query(null, $screen-md-max) {
-		}
-
-		@include media-query($screen-lg-min, null) {
-		}
-	}
-
-	/* **************** LVL N NAV **************** */
-	.child-menu {
-		@include media-query(null, $screen-md-max) {
-			height: 0;
-			opacity: 0;
-			visibility: hidden;
-		}
-
-		@include media-query($screen-lg-min, null) {
-		}
-	}
-
-	.open {
-		& > .child-menu, {
-			@include media-query(null, $screen-md-max) {
-				height: auto;
-				opacity: 1;
-				visibility: visible;
-			}
-
-			@include media-query($screen-lg-min, null) {
-			}
-		}
 	}
 
 	ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-
-		@include media-query(null, $screen-md-max) {
-			bottom: 0;
-			left: 0;
-			overflow-y: auto;
-			position: fixed;
-			right: 0;
-			top: $header-height;
-
-			@include transition(
-				left 0.3s,
-				right 0.3s,
-				visibility 0.3s
-			);
-		}
-
-		@include media-query($screen-lg-min, null) {
-		}
 	}
 
-	.open {
-		&.lvl1, &.lvl2, &.lvl3 {
-			@include media-query(null, $screen-md-max) {
-			}
-
-			@include media-query($screen-lg-min, null) {
-			}
-		}
-	}
-
-	.lvl1, .lvl2, .lvl3 {
+	ul.lvl1, ul.lvl2, ul.lvl3 {
 		@include media-query(null, $screen-md-max) {
-		}
-
-		@include media-query($screen-lg-min, null) {
-		}
-
-		&.child-open {
-			@include media-query(null, $screen-md-max) {
-				left: -100%;
-				right: 100%;
-				visibility: hidden;
-			}
+			background-color: $ameriprise-blue;
 		}
 
 		li {
 			@include media-query(null, $screen-md-max) {
-				// background-color: #53626F; // OFF DURRING DEBUG
-				border-bottom: 1px solid #A2A4A9;
-			}
-
-			@include media-query($screen-lg-min, null) {
+				background-color: $ameriprise-gray-dark;
+				border-bottom: 1px solid $ameriprise-gray-light;
 			}
 		}
 
@@ -546,43 +484,36 @@ body {
 			}
 		}
 	}
-	/* **************** lvl n nav **************** */
 
-	/* **************** LVL 1 NAV **************** */
-	.lvl1 {
-		background-color: rgba(255, 0, 0, 0.25); // DEBUG
+	.menuitem-title {
+		cursor: pointer;
+		display: block;
+		font-family: $ameriprise-font-family;
+		text-decoration: none;
 
-		li {
-			background-color: rgba(255, 0, 0, 1); // DEBUG
+		@include media-query(null, $screen-md-max) {
+			color: #FFF;
+			font-size: 14px;
+			line-height: 1.3;
+			min-height: 40px;
+			padding: 14px 25px 8px 10px;
+			position: relative;
+			text-transform: uppercase;
 		}
+	}
 
-		.menuitem-title {
-			cursor: pointer;
-			display: block;
-			font-family: $ameriprise-font-family;
-			text-decoration: none;
-
-			@include media-query(null, $screen-md-max) {
-				color: #FFF;
-				font-size: 14px;
-				line-height: 1.3;
-				min-height: 40px;
-				padding: 14px 25px 8px 10px;
-				position: relative;
-				text-transform: uppercase;
-			}
-
-			@include media-query($screen-lg-min, null) {
-			}
+	ul.lvl1 {
+		li {
 		}
 
 		.nav-footer {
 			@include media-query($screen-lg-min, null) {
 				display: none;
 			}
+
 			h2 {
-				background-color: #A2A4A9;
-				color: $gray-base;
+				background-color: $ameriprise-gray-light;
+				color: #000;
 				font-size: 10px;
 				line-height: 20px;
 				margin: 0;
@@ -600,80 +531,129 @@ body {
 		}
 
 		#layoutNavLogout {
-			@include media-query($screen-lg-min, null) {
-				display: none;
-			}
-
 			.menuitem-title {
 				padding: 15px 20px;
 			}
 
 			button {
-				color: $gray-base;
+				color: #000;
 			}
 		}
 	}
-	/* **************** lvl 1 nav **************** */
 
-	/* **************** LVL 2 NAV **************** */
-	.lvl2 {
-		background-color: rgba(0, 255, 0, 0.25); // DEBUG
-
+	ul.lvl2 {
 		li {
-			background-color: rgba(0, 255, 0, 1); // DEBUG
-		}
-
-		@include media-query(null, $screen-md-max) {
-		}
-
-		@include media-query($screen-lg-min, null) {
 		}
 	}
-	/* **************** lvl 2 nav **************** */
 
-	/* **************** LVL 3 NAV **************** */
-	.lvl3 {
-		background-color: rgba(0, 0, 255, 0.25); // DEBUG
-
+	ul.lvl3 {
 		li {
-			background-color: rgba(0, 0, 255, 1); // DEBUG
 		}
+	}
 
+	ul.lvl4 {
+		li {
+			@include media-query(null, $screen-md-max) {
+				background-color: $ameriprise-gray-light;
+				border-bottom: 1px solid $ameriprise-gray-dark;
+			}
+		}
+	}
+	// ---------------- nav look ---------------- //
+
+	// ---------------- NAV ANIMATION ---------------- //
+	ul.lvl1 {
 		@include media-query(null, $screen-md-max) {
-			// background-color: $ameriprise-blue;
+			left: 0;
+			right: 0;
+		}
+	}
+
+	ul.lvl1, ul.lvl2 {
+		@include media-query(null, $screen-md-max) {
+			// @include transition(
+			// 	left 0.3s,
+			// 	right 0.3s,
+			// 	visibility 0.3s
+			// );
+
+			&.child-open {
+				left: -100% !important;
+				right: 100% !important;
+				visibility: hidden !important;
+			}
+		}
+	}
+
+	ul.lvl2, ul.lvl3 {
+		@include media-query(null, $screen-md-max) {
+			left: 100%;
+			right: 200%;
+			visibility: hidden;
+		}
+	}
+
+	.open > {
+		ul.lvl2, ul.lvl3 {
+			@include media-query(null, $screen-md-max) {
+				left: 0;
+				right: 0;
+				visibility: visible;
+			}
+		}
+	}
+
+	ul.lvl1, ul.lvl2, ul.lvl3 {
+		@include media-query(null, $screen-md-max) {
+			bottom: 0;
 			// left: 0;
-			// position: fixed;
-			// top: 0;
-			// width: 100%;
+			overflow-y: auto;
+			position: fixed;
+			// right: 0;
+			top: $header-height;
 			// z-index: 1;
 		}
 
-		@include media-query($screen-lg-min, null) {
+		// 	@include media-query(null, $screen-md-max) {
+		// 		height: 0;
+		// 		opacity: 0;
+		// 		visibility: hidden;
+		// 	}
+
+		// .open {
+		// 	& > .child-menu, {
+		// 		@include media-query(null, $screen-md-max) {
+		// 			height: auto;
+		// 			opacity: 1;
+		// 			visibility: visible;
+		// 		}
+		// 	}
+		// }
+	}
+
+	ul.lvl4 {
+		@include media-query(null, $screen-md-max) {
+			height: 0;
+			overflow: hidden;
 		}
 	}
-	/* **************** lvl 3 nav **************** */
 
-	/* **************** LVL 4 NAV **************** */
-	.lvl4 {
-		background-color: rgba(255, 0, 255, 0.25); // DEBUG
-
-		li {
-			background-color: rgba(255, 0, 255, 1); // DEBUG
-
+	.open > {
+		ul.lvl4 {
 			@include media-query(null, $screen-md-max) {
-				background-color: #A2A4A9; // TODO Check if correct
-				border-bottom: 1px solid #53626F; // TODO Check if correct
-			}
+				height: auto;
 
-			@include media-query($screen-lg-min, null) {
+				// @include transition(
+				// 	height 0.3s
+				// );
 			}
 		}
 	}
-	/* **************** lvl 4 nav **************** */
+	// ---------------- nav animation ---------------- //
 }
-/* **************** navigation **************** */
+// ---------------- navigation ---------------- //
 
-/* **************** CONTENT **************** */
+// ---------------- CONTENT ---------------- //
 #content {
 }
-/* **************** content **************** */
+// ---------------- content ---------------- //
