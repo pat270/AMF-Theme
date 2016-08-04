@@ -22,6 +22,8 @@ body, html, [id^="senna_surface"], .flipped, .senna_surface1-default {
 
 body {
 	background-color: pink; // DEBUG
+	-moz-osx-font-smoothing: auto;
+	-webkit-font-smoothing: auto;
 }
 
 .container {
@@ -66,6 +68,10 @@ body {
 	}
 }
 
+#content {
+	padding-top: 40px;
+}
+
 #wrapper {
 	margin-top: 0;
 	padding-top: $header-height;
@@ -92,7 +98,7 @@ body {
 	position: fixed;
 	right: 0;
 	top: 0;
-	z-index: 1;
+	z-index: 1033;
 
 	@include media-query(null, $screen-xs-max) {
 		.header-search-container {
@@ -393,10 +399,6 @@ body {
 			left: 60%;
 		}
 	}
-
-	@include media-query($screen-lg-min, null) {
-		background-color: #FFF;
-	}
 }
 
 #navigationHeaderControls {
@@ -453,11 +455,6 @@ body {
 	.tagline {
 		@include media-query(null, $screen-md-max) {
 			display: none;
-		}
-
-		@include media-query($screen-lg-min, null) {
-			color: #000;
-			font-size: 18pt;
 		}
 	}
 
@@ -705,11 +702,24 @@ body {
 		width: 100%;
 	}
 
-	#navigationWrapper .container {
+	.advisor-compass-override.has-control-menu #navigationWrapper {
+		top: 0;
+	}
+
+	#navigationWrapper {
+		background-color: #FFF;
+		border-bottom: 2px solid #B1B1B1;
 		position: relative;
+		top: 0;
+		z-index: 3;
+
+		.container {
+			position: relative;
+		}
 	}
 
 	.lvl1 {
+		font-size: 16px;
 		float: right;
 	}
 
@@ -718,8 +728,8 @@ body {
 		float: left;
 	}
 
-	.lvl1 > ul > li .menuitem-title {
-		padding: 16px 25px;
+	.lvl1 > ul > li > .menuitem-title {
+		font-size: 18px;
 	}
 
 	.lvl1 > ul > .selected > .menuitem-title {
@@ -730,15 +740,23 @@ body {
 		@include arrow-down;
 	}
 
+	.lvl1 .menuitem-title {
+		color: #000;
+		padding: 16px 25px;
+	}
+
 	.lvl2 {
+		background-color: #FFF;
+		border-top: 2px solid #B1B1B1;
 		display: none;
 		left: 0;
 		position: absolute;
 		width: 100%;
-		z-index: 5;
 	}
 
 	.lvl2 > ul > li {
+		background-color: #F8F8F8;
+		border-bottom: 1px solid #E6E6E6;
 		width: 200px;
 	}
 
@@ -746,7 +764,21 @@ body {
 		display: block;
 	}
 
+	.lvl2 > li:last-child {
+		border-bottom-width: 0;
+	}
+
+	.lvl2 > ul > li > .menuitem-title,
+	.lvl3 > ul > li > .menuitem-title {
+		font-weight: 600;
+	}
+
+	.lvl2 > ul > .open {
+		background-color: #FFF;
+	}
+
 	.lvl3 {
+		background-color: #FFF;
 		bottom: 0;
 		display: none;
 		left: 200px;
@@ -770,6 +802,12 @@ body {
 		height: 67px;
 		padding-bottom: 0;
 		padding-top: 15px;
+		text-transform: uppercase;
+	}
+
+	.lvl4 > ul > li > .menuitem-title {
+		padding-bottom: 6px;
+		padding-top: 6px;
 	}
 
 	.open > .child-menu {
@@ -777,8 +815,12 @@ body {
 	}
 
 	.tagline {
+		color: #000;
 		float: left;
-		line-height: 51px;
+		font-family: $font-family-serif;
+		font-size: 24px;
+		padding-bottom: 11px;
+		padding-top: 11px;
 	}
 }
 // ------------ End Navigation Large ------------ //
