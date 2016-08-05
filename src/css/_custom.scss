@@ -204,6 +204,8 @@ body {
 #navigationBack {
 	height: 0;
 	opacity: 0;
+	padding-left: 10px;
+	padding-right: 10px;
 	visibility: hidden;
 	width: auto;
 
@@ -225,12 +227,14 @@ body {
 		);
 	}
 
-	.header-button-label {
-		font-size: 14px
+	.ac-header-btn-icon {
+		float: left;
+		margin-right: 8px;
 	}
 
-	.glyphicon {
-		padding-right: 5px;
+	.ac-header-btn-label {
+		float: left;
+		line-height: 28px;
 	}
 }
 
@@ -652,6 +656,7 @@ body.sidenav-transition .ac-header {
 .ac-header-btn {
 	background-color: transparent;
 	border-width: 0;
+	color: #FFF;
 	height: $header-height;
 	padding: 3px 0 0 0;
 	width: 50px;
