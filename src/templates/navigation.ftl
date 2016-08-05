@@ -13,7 +13,7 @@
 
 			<div class="pull-right">
 				<button aria-controls="navigation" aria-expanded="false" class="ac-header-btn btn navigation-toggle-trigger" type="button">
-					<svg class="lexicon-icon lexicon-icon-times" viewBox="0 0 512 512">
+					<svg class="ac-header-btn-icon lexicon-icon lexicon-icon-times" viewBox="0 0 512 512">
 						<path class="lexicon-icon-outline" d="M295.781 256l205.205-205.205c10.998-10.998 10.998-28.814 0-39.781-10.998-10.998-28.815-10.998-39.781 0l-205.205 205.205-205.205-205.238c-10.966-10.998-28.814-10.998-39.781 0-10.998 10.998-10.998 28.814 0 39.781l205.205 205.238-205.205 205.205c-10.998 10.998-10.998 28.815 0 39.781 5.467 5.531 12.671 8.265 19.874 8.265s14.407-2.734 19.907-8.233l205.205-205.238 205.205 205.205c5.5 5.5 12.703 8.233 19.906 8.233s14.407-2.734 19.906-8.233c10.998-10.998 10.998-28.815 0-39.781l-205.238-205.205z"></path>
 					</svg>
 
