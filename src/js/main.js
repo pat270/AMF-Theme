@@ -58,7 +58,6 @@ AUI.add(
 
 				prototype: {
 					initializer: function(config) {
-						console.log('initializer()');
 						var instance = this;
 
 						instance._navigationToggleTriggers = A.all('.navigation-toggle-trigger');
@@ -68,28 +67,35 @@ AUI.add(
 						instance._navigationToggleTriggers.on(
 							'click',
 							function (event) {
-								console.log('instance._navigationToggleTriggers.on(click)');
-
 								var isOpen = instance._navigationToggleTargets.first().hasClass('open')
 
 								instance._navigationToggleTriggers.attr('aria-expanded', !isOpen);
 
 								instance._navigationToggleTargets.toggleClass('open', !isOpen);
 
-								// if (isOpen) {
-								// 	var navigation = A.one('#navigation');
+								if (isOpen) {
+									setTimeout(
+										function () {
+											var navigation = A.one('#navigation');
 
-								// 	navigation.all('.child-open').removeClass('child-open');
-								// 	navigation.all('.open').removeClass('open');
-								// }
+											navigation.all('.child-open').removeClass('child-open');
+											navigation.all('.open').removeClass('open');
+
+											var navigationBack = instance._navigationBack;
+
+											navigationBack.attr('data-menu', '');
+											navigationBack.removeClass('open');
+										},
+										300
+									);
+
+								}
 							}
 						);
 
 						instance._navigationBack.on(
 							'click',
 							function (event) {
-								console.log('instance._navigationBack.on(click)');
-
 								var menu = A.one('#' + event.currentTarget.attr('data-menu'));
 
 								if (menu) {
@@ -107,11 +113,22 @@ AUI.add(
 					},
 
 					_initChildMenuHandlers: function(navigation) {
-						console.log('_initChildMenuHandlers()');
 						var instance = this;
 
 						if (navigation) {
-							navigation.delegate(['click'], instance._onMouseToggle, '> li .menuitem-title', instance);
+							navigation.delegate(
+								'click',
+								instance._onMouseToggle,
+								'> li .menuitem-title',
+								instance
+							);
+
+							navigation.all('.menuitem-title.has-children').on(
+								'click',
+								function (event) {
+									event.preventDefault();
+								}
+							);
 
 							// navigation.delegate('keydown', instance._handleKeyDown, 'a', instance); // Off for now. TODO FocusManager
 						}
@@ -153,7 +170,6 @@ AUI.add(
 							menuLI.removeClass('open');
 
 							if (instance) {
-
 								var parentLI = parentMenu.ancestor('li');
 
 								parentId = parentLI ? parentLI.get('id') : '';
