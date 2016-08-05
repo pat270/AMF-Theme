@@ -625,6 +625,10 @@ body.open .ac-header {
 	left: 320px;
 }
 
+body.open-admin-panel .ac-header {
+	right: 320px;
+}
+
 body.sidenav-transition .ac-header {
 	@include transition(all 0.5s ease);
 }
@@ -781,6 +785,24 @@ body.sidenav-transition .ac-header {
 
 .ac-header-search-toggle {
 	float: left;
+
+	.search-toggle-closed-icon {
+		display: none;
+	}
+
+	.search-toggle-open-icon {
+		display: inline-block;
+	}
+}
+
+.ac-header-search-toggle.collapsed {
+	.search-toggle-closed-icon {
+		display: inline-block;
+	}
+
+	.search-toggle-open-icon {
+		display: none;
+	}
 }
 
 .ac-header-site-links {
