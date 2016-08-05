@@ -85,34 +85,234 @@ body {
 	display: table;
 }
 
-// ---------------- HEADER BUTTONS ---------------- //
+// ---------------- page ---------------- //
 
-.header-button-close {
-	@include media-query(null, $screen-md-max) {
-		background-image: url(../images/ac-icon-close.png);
+// ---------------- HEADER/BANNER ---------------- //
+body.open .ac-header {
+	left: 320px;
+}
+
+body.open-admin-panel .ac-header {
+	right: 320px;
+}
+
+body.sidenav-transition .ac-header {
+	@include transition(all 0.5s ease);
+}
+
+.ac-header {
+	background-color: $ameriprise-blue;
+	color: #FFF;
+	font-family: $ameriprise-font-family;
+	font-size: 16px;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1;
+
+	a {
+		color: #FFF;
+		text-transform: capitalize;
 	}
 }
 
-.header-button-close {
-	.header-button-label {
-		margin-top: 26px;
-		text-transform: uppercase;
+.ac-header-btn {
+	background-color: transparent;
+	border-width: 0;
+	color: #FFF;
+	height: $header-height;
+	padding: 3px 0 0 0;
+	width: 50px;
+
+	&:focus,
+	&:hover {
+		color: #FFF;
 	}
 }
 
-.header-button-close,
-.header-button-back {
-
-	@include media-query(null, $screen-md-max) {
-		font-size: 10px;
-		width: 50px;
+#acHeaderSearchBar {
+	@include media-query(null, $screen-xs-max) { // max-width 769px
+		background-color: $ameriprise-blue-light;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 100%;
 	}
 
-	@include media-query($screen-lg-min, null) {
+	@include sm() { // min-width: 770px
+		float: left;
+	}
+
+	form {
+		@include lg() { // min-width: 1200px
+			width: 360px;
+		}
+
+		@include sm() { // min-width: 770px
+			width: 300px;
+		}
+	}
+
+	.input-container {
+		position: relative;
+	}
+
+	.form-control {
+		border-color: #000;
+		border-radius: 0;
+		font-size: 14px;
+		padding: 10px 40px 10px 10px;
+
+		@include lg() { // min-width: 1200px
+			padding-right: 5px;
+		}
+
+		@include sm() { // min-width: 770px
+			border-width: 0;
+			line-height: 24px;
+			padding-bottom: 5px;
+			padding-left: 5px;
+			padding-top: 5px;
+		}
+	}
+
+	.form-group,
+	.lfr-ddm-field-group,
+	.portlet {
+		margin: 0;
+	}
+
+	.form-group-inline {
+		display: block;
+	}
+
+	.lfr-ddm-field-group {
+		margin-top: -20px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+
+		.icon-monospaced {
+			@include monospace(40px);
+		}
+
+		@include lg() { // min-width: 1200px
+			display: none;
+		}
+	}
+
+	.lfr-icon-item {
+		background-color: #265982;
+		border-radius: 100px;
+		color: #FFF;
+		display: inline-block;
+
+		@include monospace(32px);
+
+		.lexicon-icon {
+			height: 20px;
+			margin-left: 4px;
+			margin-top: 2px;
+			width: 20px;
+		}
+	}
+
+	.portlet-body {
+		margin: 10px;
+
+		@include sm() { // min-width 770px
+			margin: 8px 20px;
+		}
+	}
+
+	.portlet-content {
+		border-width: 0;
+	}
+
+	.portlet-title-text,
+	.portlet-topper {
 		display: none;
 	}
 }
-// ---------------- header buttons ---------------- //
+
+#acHeaderSearchBar.collapse {
+	@include sm() { // min-width: 770px
+		display: block;
+		height: auto !important;
+	}
+}
+
+.ac-header-left {
+	float: left;
+}
+
+.ac-header-right {
+	float: right;
+}
+
+.ac-header-search-toggle {
+	float: left;
+
+	.search-toggle-closed-icon {
+		display: none;
+	}
+
+	.search-toggle-open-icon {
+		display: inline-block;
+	}
+}
+
+.ac-header-search-toggle.collapsed {
+	.search-toggle-closed-icon {
+		display: inline-block;
+	}
+
+	.search-toggle-open-icon {
+		display: none;
+	}
+}
+
+.ac-header-site-links {
+	float: right;
+	margin-top: 14px;
+}
+
+.ac-header-site-link-item {
+	display: block;
+	float: left;
+	font-weight: 600;
+	margin-left: 20px;
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	&.user-greeting {
+		max-width: 230px;
+	}
+}
+
+.site-logo {
+	background-repeat: no-repeat;
+	background-position: left center;
+	display: block;
+	height: $header-height;
+
+	@include media-query(null, $screen-xs-max) { // max-width: 769px
+		background-image: url(../images/AdvisorCompass_smallLogo_200.png);
+		background-size: 100%;
+		width: 150px;
+	}
+
+	@include sm() { // max-width: 770px
+		background-image: url(../images/LOGO.PNG);
+		background-size: 100%;
+		margin: 0 10px;
+		width: 272px;
+	}
+}
+// ---------------- header/banner ---------------- //
 
 // ---------------- NAVIGATION ---------------- //
 @include media-query(null, $screen-md-max) {
@@ -623,228 +823,3 @@ body {
 #content {
 }
 // ---------------- content ---------------- //
-
-body.open .ac-header {
-	left: 320px;
-}
-
-body.open-admin-panel .ac-header {
-	right: 320px;
-}
-
-body.sidenav-transition .ac-header {
-	@include transition(all 0.5s ease);
-}
-
-.ac-header {
-	background-color: $ameriprise-blue;
-	color: #FFF;
-	font-family: $ameriprise-font-family;
-	font-size: 16px;
-	left: 0;
-	position: fixed;
-	right: 0;
-	top: 0;
-	z-index: 1;
-
-	a {
-		color: #FFF;
-		text-transform: capitalize;
-	}
-}
-
-.ac-header-btn {
-	background-color: transparent;
-	border-width: 0;
-	color: #FFF;
-	height: $header-height;
-	padding: 3px 0 0 0;
-	width: 50px;
-
-	&:focus,
-	&:hover {
-		color: #FFF;
-	}
-}
-
-#acHeaderSearchBar {
-	@include media-query(null, $screen-xs-max) { // max-width 769px
-		background-color: $ameriprise-blue-light;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 100%;
-	}
-
-	@include sm() { // min-width: 770px
-		float: left;
-	}
-
-	form {
-		@include lg() { // min-width: 1200px
-			width: 360px;
-		}
-
-		@include sm() { // min-width: 770px
-			width: 300px;
-		}
-	}
-
-	.input-container {
-		position: relative;
-	}
-
-	.form-control {
-		border-color: #000;
-		border-radius: 0;
-		font-size: 14px;
-		padding: 10px 40px 10px 10px;
-
-		@include lg() { // min-width: 1200px
-			padding-right: 5px;
-		}
-
-		@include sm() { // min-width: 770px
-			border-width: 0;
-			line-height: 24px;
-			padding-bottom: 5px;
-			padding-left: 5px;
-			padding-top: 5px;
-		}
-	}
-
-	.form-group,
-	.lfr-ddm-field-group,
-	.portlet {
-		margin: 0;
-	}
-
-	.form-group-inline {
-		display: block;
-	}
-
-	.lfr-ddm-field-group {
-		margin-top: -20px;
-		position: absolute;
-		right: 0;
-		top: 50%;
-
-		.icon-monospaced {
-			@include monospace(40px);
-		}
-
-		@include lg() { // min-width: 1200px
-			display: none;
-		}
-	}
-
-	.lfr-icon-item {
-		background-color: #265982;
-		border-radius: 100px;
-		color: #FFF;
-		display: inline-block;
-
-		@include monospace(32px);
-
-		.lexicon-icon {
-			height: 20px;
-			margin-left: 4px;
-			margin-top: 2px;
-			width: 20px;
-		}
-	}
-
-	.portlet-body {
-		margin: 10px;
-
-		@include sm() { // min-width 770px
-			margin: 8px 20px;
-		}
-	}
-
-	.portlet-content {
-		border-width: 0;
-	}
-
-	.portlet-title-text,
-	.portlet-topper {
-		display: none;
-	}
-}
-
-#acHeaderSearchBar.collapse {
-	@include sm() { // min-width: 770px
-		display: block;
-		height: auto !important;
-	}
-}
-
-.ac-header-left {
-	float: left;
-}
-
-.ac-header-right {
-	float: right;
-}
-
-.ac-header-search-toggle {
-	float: left;
-
-	.search-toggle-closed-icon {
-		display: none;
-	}
-
-	.search-toggle-open-icon {
-		display: inline-block;
-	}
-}
-
-.ac-header-search-toggle.collapsed {
-	.search-toggle-closed-icon {
-		display: inline-block;
-	}
-
-	.search-toggle-open-icon {
-		display: none;
-	}
-}
-
-.ac-header-site-links {
-	float: right;
-	margin-top: 14px;
-}
-
-.ac-header-site-link-item {
-	display: block;
-	float: left;
-	font-weight: 600;
-	margin-left: 20px;
-
-	&:first-child {
-		margin-left: 0;
-	}
-
-	&.user-greeting {
-		max-width: 230px;
-	}
-}
-
-.site-logo {
-	background-repeat: no-repeat;
-	background-position: left center;
-	display: block;
-	height: $header-height;
-
-	@include media-query(null, $screen-xs-max) { // max-width: 769px
-		background-image: url(../images/AdvisorCompass_smallLogo_200.png);
-		background-size: 100%;
-		width: 150px;
-	}
-
-	@include sm() { // max-width: 770px
-		background-image: url(../images/LOGO.PNG);
-		background-size: 100%;
-		margin: 0 10px;
-		width: 272px;
-	}
-}
