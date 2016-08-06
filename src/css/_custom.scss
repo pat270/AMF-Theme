@@ -105,7 +105,7 @@ body.sidenav-transition .ac-header {
 	position: fixed;
 	right: 0;
 	top: 0;
-	z-index: 1;
+	z-index: 1033;
 }
 
 .ac-header-btn {
@@ -309,16 +309,16 @@ body.sidenav-transition .ac-header {
 	height: $header-height;
 
 	@include media-query(null, $screen-xs-max) { // max-width: 769px
-		background-image: url(../images/AdvisorCompass_smallLogo_200.png);
+		background-image: url(../images/AdvisorCompass_smallLogo2x.png);
 		background-size: 100%;
 		width: 150px;
 	}
 
 	@include sm() { // max-width: 770px
-		background-image: url(../images/LOGO.PNG);
+		background-image: url(../images/LOGO2x.png);
 		background-size: 100%;
-		margin: 0 10px;
-		width: 272px;
+		margin-right: 10px;
+		width: 233px;
 	}
 }
 // ---------------- header/banner ---------------- //
