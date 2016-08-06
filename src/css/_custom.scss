@@ -335,7 +335,7 @@ body.sidenav-transition .ac-header {
 		right: 0;
 		top: 0;
 		visibility: hidden;
-		z-index: 1;
+		z-index: 1033;
 
 		@include transition(
 			height 0.0s 0.3s,
@@ -572,21 +572,6 @@ body.sidenav-transition .ac-header {
 
 		button {
 			color: #000;
-		}
-	}
-
-	.lvl1 {
-		li {
-		}
-	}
-
-	.lvl2 {
-		li {
-		}
-	}
-
-	.lvl3 {
-		li {
 		}
 	}
 
