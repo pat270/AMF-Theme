@@ -68,10 +68,6 @@ body {
 	}
 }
 
-#content {
-	padding-top: 40px;
-}
-
 #wrapper {
 	margin-top: 0;
 	padding-top: $header-height;
@@ -104,17 +100,12 @@ body.sidenav-transition .ac-header {
 	background-color: $ameriprise-blue;
 	color: #FFF;
 	font-family: $ameriprise-font-family;
-	font-size: 16px;
+	font-size: 14px;
 	left: 0;
 	position: fixed;
 	right: 0;
 	top: 0;
 	z-index: 1;
-
-	a {
-		color: #FFF;
-		text-transform: capitalize;
-	}
 }
 
 .ac-header-btn {
@@ -234,6 +225,10 @@ body.sidenav-transition .ac-header {
 	.portlet-topper {
 		display: none;
 	}
+
+	.search-input {
+		color: #000;
+	}
 }
 
 #acHeaderSearchBar.collapse {
@@ -249,6 +244,12 @@ body.sidenav-transition .ac-header {
 
 .ac-header-right {
 	float: right;
+}
+
+.ac-header-btn-label {
+	font-size: 12px;
+	padding-top: 4px;
+	text-transform: uppercase;
 }
 
 .ac-header-search-toggle {
@@ -275,14 +276,22 @@ body.sidenav-transition .ac-header {
 
 .ac-header-site-links {
 	float: right;
-	margin-top: 14px;
+	// margin-top: 14px;
 }
 
 .ac-header-site-link-item {
 	display: block;
 	float: left;
-	font-weight: 600;
+	height: $header-height;
+	line-height: $header-height;
 	margin-left: 20px;
+	padding: 1px 8px 0;
+	text-transform: none;
+
+	&:hover, & {
+		color: #FFF;
+		text-decoration: none;
+	}
 
 	&:first-child {
 		margin-left: 0;
@@ -434,7 +443,7 @@ body.sidenav-transition .ac-header {
 
 	.ac-header-btn-label {
 		float: left;
-		line-height: 28px;
+		text-transform: none;
 	}
 }
 
@@ -582,10 +591,15 @@ body.sidenav-transition .ac-header {
 	}
 
 	.lvl4 {
-		li {
-			@include media-query(null, $screen-md-max) {
+		@include media-query(null, $screen-md-max) {
+			li {
 				background-color: $ameriprise-gray-light;
 				border-bottom: 1px solid $ameriprise-gray-dark;
+			}
+
+			.menuitem-title {
+				color: #000;
+				text-transform: none;
 			}
 		}
 	}
