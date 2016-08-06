@@ -56,6 +56,7 @@ AUI.add(
 						instance._navigationToggleTriggers = A.all('.navigation-toggle-trigger');
 						instance._navigationToggleTargets = A.all('.navigation-toggle-target');
 						instance._navigationBack = A.one('#navigationBack');
+						instance._navigation = A.one('#navigation');
 
 						instance._navigationToggleTriggers.on(
 							'click',
@@ -69,7 +70,7 @@ AUI.add(
 								if (isOpen) {
 									setTimeout(
 										function () {
-											var navigation = A.one('#navigation');
+											var navigation = instance._navigation;
 
 											navigation.all('.child-open').removeClass('child-open');
 											navigation.all('.open').removeClass('open');
@@ -102,6 +103,30 @@ AUI.add(
 						Liferay.on(
 							['hideNavigationMenu', 'showNavigationMenu'],
 							instance._onNavigationMenuToggle
+						);
+
+						instance._navigation.delegate(
+							'click',
+							function (event) {
+								console.log('instance._navigation');
+								var height = 0;
+
+								var lvl2 = event.currentTarget.ancestor('li').one('.lvl2');
+								var alllvl2s = instance._navigation.all('.lvl2');
+								var lvl2ul = lvl2.one('> ul');
+								var parent = lvl2.ancestor('.lvl1.child-open');
+
+								if (parent) {
+									height = lvl2ul.get('scrollHeight');
+								}
+
+								alllvl2s.setStyle('height', 0);
+								lvl2.setStyle('height', height);
+
+								A.one('#content').setStyle('margin-top', height);
+							},
+							'.lvl1 > ul > li > .menuitem-title.has-children',
+							instance
 						);
 					},
 
