@@ -599,6 +599,10 @@ body.sidenav-transition .ac-header {
 				background-color: $ameriprise-gray-light;
 				border-bottom: 1px solid $ameriprise-gray-dark;
 
+				&:first-child {
+					border-top: 1px solid $ameriprise-gray-dark;
+				}
+
 				&:last-child {
 					border-bottom-width: 0;
 				}
