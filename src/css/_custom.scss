@@ -22,6 +22,7 @@ body, html, [id^="senna_surface"], .flipped, .senna_surface1-default {
 
 body {
 	background-color: pink; // DEBUG
+	-ms-overflow-style: scrollbar;
 	-moz-osx-font-smoothing: auto;
 	-webkit-font-smoothing: auto;
 }
@@ -597,10 +598,16 @@ body.sidenav-transition .ac-header {
 			li {
 				background-color: $ameriprise-gray-light;
 				border-bottom: 1px solid $ameriprise-gray-dark;
+
+				&:last-child {
+					border-bottom-width: 0;
+				}
 			}
 
 			.menuitem-title {
 				color: #000;
+				font-weight: 600;
+				padding-left: 30px;
 				text-transform: none;
 			}
 		}
@@ -645,7 +652,7 @@ body.sidenav-transition .ac-header {
 			left: 100%;
 			position: absolute;
 			top: 0;
-			width: 100%;
+			width: 100.3%; // Chrome and Webkit rounding issue
 		}
 	}
 
