@@ -489,24 +489,31 @@ body.sidenav-transition .ac-header {
 			}
 		}
 
-		.glyphicon-chevron-right, .glyphicon-plus {
+		.menuitem-title-icon {
 			@include media-query(null, $screen-md-max) {
+				margin-top: -12px;
 				position: absolute;
 				right: 10px;
-				top: 33%;
-			}
+				top: 50%;
 
-			@include media-query($screen-lg-min, null) {
-				display: none;
+				&.icon-caret-right {
+					font-size: 24px;
+				}
 			}
 		}
 
-		.menuitem-title > .glyphicon-plus {
-			@include transition(all 0.3s);
+		.menuitem-title-expand-icon {
+			@include media-query(null, $screen-md-max) {
+				margin-top: -8px;
+
+				@include transition(transform 0.3s);
+			}
 		}
 
-		.open > .menuitem-title > .glyphicon-plus {
-			@include transform(rotate(135deg));
+		.open > .menuitem-title > .menuitem-title-expand-icon {
+			@include media-query(null, $screen-md-max) {
+				@include transform(rotate(135deg));
+			}
 		}
 	}
 
@@ -526,6 +533,12 @@ body.sidenav-transition .ac-header {
 			padding: 14px 25px 8px 10px;
 			position: relative;
 			text-transform: uppercase;
+		}
+	}
+
+	.menuitem-title-icon {
+		@include lg() {
+			display: none;
 		}
 	}
 

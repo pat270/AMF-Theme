@@ -52,7 +52,7 @@
 									<a class="menuitem-title has-children" href="#" aria-labelledby="layout_${nav_item_lvl1.getLayoutId()}" ${nav_item_lvl1_attr_has_popup} ${nav_item_lvl1.getTarget()} role="menuitem">
 										<@liferay_theme["layout-icon"] layout=nav_item_lvl1_layout /> ${nav_item_lvl1.getName()}
 
-										<span class="glyphicon glyphicon-chevron-right"></span>
+										<span class="icon-caret-right menuitem-title-icon"></span>
 									</a>
 
 									<#-- LVL2 NAV -->
@@ -78,7 +78,7 @@
 														<a class="menuitem-title has-children" href="#" aria-labelledby="layout_${nav_child_lvl2.getLayoutId()}" ${nav_child_lvl2_attr_has_popup} role="menuitem">
 															${nav_child_lvl2.getName()}
 
-															<span class="glyphicon glyphicon-chevron-right"></span>
+															<span class="icon-caret-right menuitem-title-icon"></span>
 														</a>
 
 														<#-- LVL3 NAV -->
@@ -103,8 +103,9 @@
 																		<#else>
 																			<a class="menuitem-title has-children" href="#" aria-labelledby="layout_${nav_child_lvl3.getLayoutId()}" ${nav_child_lvl3_attr_has_popup} role="menuitem">
 																				${nav_child_lvl3.getName()}
-
-																				<span class="glyphicon glyphicon glyphicon-plus"></span>
+																				<svg class="lexicon-icon lexicon-icon-plus menuitem-title-icon menuitem-title-expand-icon" viewBox="0 0 512 512">
+																					<path class="lexicon-icon-outline" d="M479.82 224.002h-192.41v-191.91c0-17.6-14.4-32-32-32v0c-17.6 0-32 14.4-32 32v191.91h-191.41c-17.6 0-32 14.4-32 32v0c0 17.6 14.4 32 32 32h191.41v191.91c0 17.6 14.4 32 32 32v0c17.6 0 32-14.4 32-32v-191.909h192.41c17.6 0 32-14.4 32-32v0c0-17.6-14.4-32-32-32z"></path>
+																				</svg>
 																			</a>
 
 																			<#-- LVL4 NAV -->
@@ -170,7 +171,7 @@
 								<#-- TODO ${obo_active.getName()} -->
 								${"Firstname Lastname"}
 
-								<span class="glyphicon glyphicon-chevron-right"></span>
+								<span class="icon-caret-right menuitem-title-icon"></span>
 							</a>
 
 							<div class="menu-wrapper child-menu lvl2 active-profile">
