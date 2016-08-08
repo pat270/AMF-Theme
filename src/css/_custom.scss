@@ -368,8 +368,6 @@ body.sidenav-transition .ac-header {
 		visibility: hidden;
 		z-index: 1033;
 
-		@include transform(scale(1));
-
 		@include transition(
 			left 0.3s,
 			visibility 0.3s,
@@ -403,6 +401,10 @@ body.sidenav-transition .ac-header {
 		background-color: $ameriprise-blue;
 		border-bottom: 1px solid $ameriprise-gray-light;
 		height: $header-height;
+		left: 0;
+		margin: 0;
+		position: absolute;
+		right: 0;
 	}
 
 	@include media-query($screen-lg-min, null) {
@@ -591,70 +593,44 @@ body.sidenav-transition .ac-header {
 	// ---------------- nav look ---------------- //
 
 	// ---------------- NAV ANIMATION ---------------- //
-	.lvl1 {
-		@include media-query(null, $screen-md-max) {
-			left: 0;
-			right: 0;
-
-			@include transition(
-				left 0.3s,
-				right 0.3s,
-				visibility 0.3s
-			);
-		}
-	}
-
-	.lvl2 {
-		@include media-query(null, $screen-md-max) {
-			height: auto !important;
-		}
-	}
-
 	.lvl1, .lvl2 {
 		@include media-query(null, $screen-md-max) {
 			&.child-open {
-				left: -100% !important;
-				right: 100% !important;
-				visibility: hidden !important;
-			}
-		}
-	}
+				> ul {
+					position: relative;
 
-	.lvl2, .lvl3 {
-		@include media-query(null, $screen-md-max) {
-			left: 100%;
-			right: -100%;
-			visibility: hidden;
-
-			@include transition(
-				left 0.3s,
-				right 0.3s,
-				visibility 0.3s
-			);
-		}
-	}
-
-	.open > {
-		.lvl2, .lvl3 {
-			@include media-query(null, $screen-md-max) {
-				left: 0;
-				right: 0;
-				visibility: visible;
+					@include transform(translateX(-100%));
+				}
 			}
 		}
 	}
 
 	.lvl1, .lvl2, .lvl3 {
 		@include media-query(null, $screen-md-max) {
-			bottom: 0;
-			position: fixed;
-			top: $header-height;
-			z-index: 1;
-
-			ul {
-				height: 100%;
-				overflow-y: auto;
+			> ul {
+				@include transition(all 0.25s ease);
 			}
+		}
+	}
+
+	.lvl1 {
+		@include media-query(null, $screen-md-max) {
+			bottom: 0;
+			left: 0;
+			right: 0;
+			position: absolute;
+			top: 50px;
+		}
+	}
+
+	.lvl2, .lvl3 {
+		@include media-query(null, $screen-md-max) {
+			bottom: 0;
+			visibility: hidden;
+			left: 100%;
+			position: absolute;
+			top: 0;
+			width: 100%;
 		}
 	}
 
@@ -676,8 +652,14 @@ body.sidenav-transition .ac-header {
 		}
 	}
 
-	.open > {
-		.lvl4 {
+	.open {
+		> .lvl2, > .lvl3 {
+			@include media-query(null, $screen-md-max) {
+				visibility: visible;
+			}
+		}
+
+		> .lvl4 {
 			@include media-query(null, $screen-md-max) {
 				max-height: 900px;
 				visibility: visible;
@@ -691,7 +673,6 @@ body.sidenav-transition .ac-header {
 	}
 	// ---------------- nav animation ---------------- //
 }
-
 
 // ------------ Navigation Large ------------ //
 @include lg() {
